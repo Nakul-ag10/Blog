@@ -1,0 +1,19 @@
+# Node.js dependencies
+node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# OS system files
+.DS_Store
+
+# Build files (for frontend if built before deploy)
+build/
+
+# Environment variables
+.env
+
+# local MongoDB data (if any)
+data/
