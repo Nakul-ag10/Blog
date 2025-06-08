@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const api = axios.create({
-    baseURL: 'https://blog-eec3.onrender.com/api',
+    baseURL: `${process.env.REACT_APP_API_URL}/api`,
 });
 
 //Attach token to header
