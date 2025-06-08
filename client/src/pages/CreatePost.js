@@ -19,7 +19,7 @@ function CreatePost(){
         e.preventDefault();
 
         try{
-            const res = await api.post('/posts', formdata)
+            await api.post('/posts', formdata)
             navigate('/profile');
         }
         catch(err){
