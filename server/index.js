@@ -8,11 +8,14 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-
+const allowedOrigins = [
+  "http://localhost:3000",              // for local development
+  "https://blogsy-blogss.netlify.app"   // your deployed frontend
+];
 //MIDDLEWARE
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: allowedOrigins,
     credentials: true,
   })
 ); //cross origin requests
