@@ -1,5 +1,5 @@
 # 📝 Blogsy – A Fullstack Blog App
-Live Demo
+Live Demo: https://blogsy-blogss.netlify.app/
 (Note: Backend is hosted on Render free tier, so initial load may be slow)
 
 # 🌐 Overview
