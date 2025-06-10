@@ -20,25 +20,25 @@ Blogsy is a fullstack blog application built using the MERN stack (MongoDB, Expr
 # 🛠 Tech Stack & Dependencies
 **Frontend:**
 
-React
+- React
 
-Axios
+- Axios
 
-React Router DOM
+- React Router DOM
 
-React Markdown
+- React Markdown
 
 **Backend:**
 
-Node.js & Express.js
+- Node.js & Express.js
 
-MongoDB
+- MongoDB
 
-JWT (JSON Web Tokens) for authentication
+- JWT (JSON Web Tokens) for authentication
 
-CORS
+- CORS
 
-dotenv
+- dotenv
 
 
 #  Features To Add
