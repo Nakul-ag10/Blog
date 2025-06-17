@@ -8,6 +8,8 @@ function RegisterPage() {
     email: "",
     password: "",
   });
+  const [error, setError] = useState('');
+  const [registerFailed, setRegisterFailed] = useState(false);
   const navigate = useNavigate();
   const { register } = useAuth();
 
@@ -25,6 +27,13 @@ function RegisterPage() {
       register(res.data); 
       navigate("/profile");
     } catch (err) {
+      setRegisterFailed(true);
+      if(err.response && err.response.status === 400){
+        setError("User already exists")
+      }
+      else{
+        setError("Registration Failed! Please try again")
+      }
       console.error("Registration failed");
     }
   };
@@ -77,7 +86,7 @@ function RegisterPage() {
                   value={formdata.email}
                   onChange={handleChange}
                   autoComplete="email"
-                  className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                  className={`block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 ${registerFailed? `outline-2 outline-red-500`: `outline-1 -outline-offset-1 outline-gray-300`} placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6`}
                 />
               </div>
             </div>
@@ -109,6 +118,7 @@ function RegisterPage() {
             </div>
 
             <div>
+              {error && <p className="text-red-500 mt-4 text-sm/6 font-semibold">{error}</p>}
               <button
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"

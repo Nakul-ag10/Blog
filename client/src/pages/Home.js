@@ -90,7 +90,7 @@ function Home() {
               {posts.map((post) => (
                 <article
                   key={post._id}
-                  className="flex max-w-xl p-6 rounded-md flex-col items-start border-gray-900 justify-between transition delay-100 duration-500 ease-in-out hover:border-indigo-400 hover:border-b hover:shadow-lg "
+                  className=" shadow-sm shadow-indigo-400 flex max-w-xl p-6 rounded-md flex-col items-start border-gray-900 justify-between transition delay-100 duration-200 ease-in-out hover:border-indigo-400 hover:border-b hover:shadow-md "
                 >
                   <div className="flex items-center gap-x-4 text-xs">
                     <time dateTime={post.createdAt} className="text-gray-200">

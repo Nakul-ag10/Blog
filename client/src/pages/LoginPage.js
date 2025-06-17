@@ -5,6 +5,8 @@ import { useAuth } from "../context/authcontext";
 
 function LoginPage() {
   const [formdata, setFormdata] = useState({ email: "", password: "" });
+  const [error, setError] = useState('')
+  const [loginFailed, setLoginFailed] = useState(false);
   const navigate = useNavigate();
   const { login } = useAuth();
 
@@ -24,7 +26,15 @@ function LoginPage() {
       console.log(res.data);
       navigate("/profile");
     } catch (err) {
+      setLoginFailed(true);
+      if(err.response && err.response.status === 400){
+        setError('Invald Credentials')
+      }
+      else{
+        setError('Something went wrong');
+      }
       console.error("Login failed:", err.response?.data || err.message);
+
     }
   };
 
@@ -58,7 +68,7 @@ function LoginPage() {
                   value={formdata.email}
                   onChange={handleChange}
                   autoComplete="email"
-                  className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                  className={`block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900  ${loginFailed? `outline-2 outline-red-500` : `outline-1 -outline-offset-1 outline-gray-300`}  placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6`}
                 />
               </div>
             </div>
@@ -84,12 +94,13 @@ function LoginPage() {
                   onChange={handleChange}
                   required
                   autoComplete="current-password"
-                  className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                  className={`block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 ${loginFailed? `outline-2 outline-red-500` : `outline-1 -outline-offset-1 outline-gray-300`} placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6`}
                 />
               </div>
             </div>
 
             <div>
+              {error && <p className="text-red-500 text-sm/6 font-semibold mt-4">{error}</p>}
               <button
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
